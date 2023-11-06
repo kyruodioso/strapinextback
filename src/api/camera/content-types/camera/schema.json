@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cameras",
+  "info": {
+    "singularName": "camera",
+    "pluralName": "cameras",
+    "displayName": "Camera",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "integer",
+      "unique": true,
+      "required": true,
+      "min": 1
+    },
+    "ip": {
+      "type": "integer",
+      "unique": true,
+      "required": true
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "inactive",
+        "maintenance"
+      ]
+    },
+    "installation_date": {
+      "type": "date",
+      "required": true
+    },
+    "last_review": {
+      "type": "date"
+    },
+    "tipe": {
+      "type": "enumeration",
+      "enum": [
+        "fixed",
+        "mobile",
+        "paniramic"
+      ],
+      "required": true,
+      "default": "fixed"
+    },
+    "observation": {
+      "type": "text"
+    },
+    "train_station": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::train-station.train-station",
+      "inversedBy": "cameras"
+    },
+    "model": {
+      "type": "string"
+    }
+  }
+}

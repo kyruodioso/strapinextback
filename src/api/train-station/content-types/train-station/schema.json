@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "train_stations",
+  "info": {
+    "singularName": "train-station",
+    "pluralName": "train-stations",
+    "displayName": "train_station",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "station_name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "parts": {
+      "type": "boolean"
+    },
+    "cameras": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::camera.camera",
+      "mappedBy": "train_station"
+    }
+  }
+}
