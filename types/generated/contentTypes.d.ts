@@ -727,6 +727,41 @@ export interface ApiCameraCamera extends Schema.CollectionType {
   };
 }
 
+export interface ApiOperationTrainOperationTrain extends Schema.CollectionType {
+  collectionName: 'operation_trains';
+  info: {
+    singularName: 'operation-train';
+    pluralName: 'operation-trains';
+    displayName: 'Operation_Train';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    train_stations: Attribute.Relation<
+      'api::operation-train.operation-train',
+      'oneToMany',
+      'api::train-station.train-station'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::operation-train.operation-train',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::operation-train.operation-train',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTrainStationTrainStation extends Schema.CollectionType {
   collectionName: 'train_stations';
   info: {
@@ -781,6 +816,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::camera.camera': ApiCameraCamera;
+      'api::operation-train.operation-train': ApiOperationTrainOperationTrain;
       'api::train-station.train-station': ApiTrainStationTrainStation;
     }
   }

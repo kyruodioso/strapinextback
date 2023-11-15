@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "operation_trains",
+  "info": {
+    "singularName": "operation-train",
+    "pluralName": "operation-trains",
+    "displayName": "Operation_Train"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "train_stations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::train-station.train-station"
+    }
+  }
+}
